@@ -1,3 +1,19 @@
+# http://b/15193147
+# Whitelist devices that are still allowed to use stlport. This will prevent any
+# new devices from making the same mistakes.
+STLPORT_WHITELIST := \
+    deb \
+    flo \
+    flounder \
+    fugu \
+    grouper \
+    hammerhead \
+    mako \
+    manta \
+    shamu \
+    tilapia \
+
+ifneq (,$(filter $(TARGET_DEVICE),$(STLPORT_WHITELIST)))
 LOCAL_PATH := $(call my-dir)
 
 libstlport_src_files := \
@@ -70,3 +86,4 @@ LOCAL_CPPFLAGS := $(libstlport_cppflags)
 LOCAL_C_INCLUDES := $(libstlport_c_includes)
 LOCAL_CXX_STL := none
 include $(BUILD_STATIC_LIBRARY)
+endif
