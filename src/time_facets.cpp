@@ -428,10 +428,10 @@ void _STLP_CALL __write_formatted_timeT(_STLP_BASIC_IOSTRING(_Ch) &buf,
         break;
       {
         int diff;
-#    if defined (__USE_BSD) || defined (__BEOS__)
+#    if defined (__USE_BSD) || defined (__BEOS__) || defined (__linux__)
         diff = t->tm_gmtoff;
 #    else
-        diff = t->__tm_gmtoff;
+        diff = t->_tm_gmtoff;
 #    endif
         if (diff < 0) {
           buf.append(1, ct.widen('-'));
